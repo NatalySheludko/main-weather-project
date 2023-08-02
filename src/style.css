@@ -17,3 +17,8 @@
 .my-list {
   list-style: none;
 }
+
+small a {
+    text-decoration: none;
+    padding-left: 285px;
+}
