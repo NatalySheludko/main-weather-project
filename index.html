@@ -24,6 +24,7 @@
                 class="form-control"
                 placeholder="Enter a city..."
                 autocomplete="off"
+                id="search-city"
               />
             </div>
             <div class="col-3">
@@ -31,6 +32,7 @@
                 type="submit"
                 value="Search"
                 class="btn btn-warning w-100"
+                id="enter-city"
               />
             </div>
           </div>
@@ -39,27 +41,27 @@
         <div class="row">
           <div class="col">
             <ul class="my-list">
-              <li>Weather: Zaporizhzhia</li>
-              <li id="show-current-day-hours-minutes">Tuesday 00:20</li>
-              <li>Description</li>
+              <li id="current-city">Weather: Zaporizhzhia</li>
+              <li id="current-date">Tuesday 00:20</li>
+              <li id="current-description">Description</li>
             </ul>
           </div>
           <div class="col">
             <ul class="my-list">
-              <li>
+              <li id="current-icon">
                 <img
                   src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
                 />
               </li>
-              <li>24</li>
+              <li id="show-temperature">24</li>
               <li><a href="#">°C</a> | <a href="#">°F</a></li>
             </ul>
           </div>
           <div class="col">
             <ul class="my-list">
-              <li>Probability of precipitation: 2%</li>
-              <li>Humidity: 50%</li>
-              <li>Wind: 8 км/ч</li>
+              <li id="show-feels-temperature">Feels like: 26 <a href="#">°C</a> | <a href="#">°F</a></li>
+              <li id="current-humidity">Humidity: 50%</li>
+              <li id="current-wind">Wind: 8 км/ч</li>
             </ul>
           </div>
         </div>
