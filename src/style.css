@@ -13,3 +13,7 @@
 #search-form {
   padding: 30px;
 }
+
+.my-list {
+  list-style: none;
+}
