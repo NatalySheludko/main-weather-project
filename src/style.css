@@ -22,3 +22,7 @@ small a {
     text-decoration: none;
     padding-left: 285px;
 }
+
+#current-description:first-letter {
+  text-transform: capitalize;
+}
