@@ -1,5 +1,5 @@
-function formatCurrentDate(dateTime) {
-  let currentDate = new Date(dateTime);
+function formatCurrentDate() {
+  let currentDate = new Date();
   let days = [
     "Sunday",
     "Monday",
@@ -29,6 +29,7 @@ function showCurrentWeather(response) {
   let currentCity = document.querySelector("#current-city");
   let currentDescription = document.querySelector("#current-description");
   let currentWind = document.querySelector("#current-wind");
+
   let currentHumidity = document.querySelector("#current-humidity");
   let currentFeelsTemperature = document.querySelector(
     "#show-feels-temperature"
@@ -40,12 +41,12 @@ function showCurrentWeather(response) {
   currentTemperature.innerHTML = Math.round(response.data.temperature.current);
   currentCity.innerHTML = `Weather: ${response.data.city}`;
   currentDescription.innerHTML = response.data.condition.description;
-  currentWind.innerHTML = Math.round(response.data.wind.speed);
-  currentHumidity.innerHTML = response.data.temperature.humidity;
-  currentFeelsTemperature.innerHTML = Math.round(
-    response.data.temperature.feels_like
-  );
-  currentDate.innerHTML = formatCurrentDate(response.data.time * 1000);
+  currentWind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+
+  currentHumidity.innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
+  currentFeelsTemperature.innerHTML = `Feels like: 
+    ${Math.round(response.data.temperature.feels_like)}`;
+  currentDate.innerHTML = formatCurrentDate();
   iconElement.innerHTML =
     "<img src='" + weatherIconUrl + "' alt='Weather Icon'>";
 }
