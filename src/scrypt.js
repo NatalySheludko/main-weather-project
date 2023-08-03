@@ -39,7 +39,7 @@ function showCurrentWeather(response) {
   let iconElement = document.getElementById("current-icon");
 
   currentTemperature.innerHTML = Math.round(response.data.temperature.current);
-  currentCity.innerHTML = `Weather: ${response.data.city}`;
+  currentCity.innerHTML = response.data.city;
   currentDescription.innerHTML = response.data.condition.description;
   currentWind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
 
@@ -66,3 +66,14 @@ function handleSubmit(event) {
 
 let searchCity = document.querySelector("#enter-city");
 searchCity.addEventListener("click", handleSubmit);
+
+function findCurrentPosition(position) {
+  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
+  let unit = "metric";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showCurrentWeather);
+}
+navigator.geolocation.getCurrentPosition(findCurrentPosition);
+findCurrentPosition();
