@@ -110,9 +110,3 @@ fahrenheitButton.addEventListener("click", fahrenheitTemperatureScale);
 
 let celsiusButton = document.querySelector("#link-celsius");
 celsiusButton.addEventListener("click", celsiusTemperatureScale);
-
-let fahrenheitButtonFeels = document.querySelector("#link-fahrenheit-feels");
-fahrenheitButtonFeels.addEventListener("click", fahrenheitTemperatureScale);
-
-let celsiusButtonFeels = document.querySelector("#link-celsius-feels");
-celsiusButtonFeels.addEventListener("click", celsiusTemperatureScale);

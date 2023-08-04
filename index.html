@@ -38,41 +38,36 @@
           </div>
         </form>
 
-        <div class="row">
-          <div class="col">
-            <ul class="my-list">
-              <li id="current-city">Location</li>
-              <li id="current-date">Day & time</li>
-              <li id="current-description">Description</li>
-            </ul>
-          </div>
-          <div class="col">
+        <div class="row" id="weather-information">
+          <div class="col-4">
             <ul class="my-list">
               <li id="current-icon">
                 <img
                   src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
                 />
               </li>
+            </ul>
+
+            <ul class="my-list">
+              <li id="current-city">Location</li>
+              <li id="current-date">Day & time</li>
+              <li id="current-description">Description</li>
+            </ul>
+          </div>
+
+          <div class="col">
+            <ul class="my-list">
               <li id="show-temperature">t</li>
-              <li>
+              <li id="celsius-fahrenheit">
                 <a href="#" id="link-celsius">°C</a> |
                 <a href="#" id="link-fahrenheit">°F</a>
               </li>
             </ul>
-          </div>
-          <div class="col">
+
             <ul class="my-list">
               <li>Feels like: <span id="show-feels-temperature"></span></li>
               <li id="current-humidity">Humidity</li>
               <li id="current-wind">Wind</li>
-            </ul>
-          </div>
-          <div class="col">
-            <ul class="my-list">
-              <li>
-                <a href="#" id="link-celsius-feels">°C</a> |
-                <a href="#" id="link-fahrenheit-feels">°F</a>
-              </li>
             </ul>
           </div>
         </div>
@@ -92,5 +87,5 @@
     integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
     crossorigin="anonymous"
   ></script>
-  <script src="src/scrypt.js"></script>
+  <script src="src/script.js"></script>
 </html>
