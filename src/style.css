@@ -8,21 +8,44 @@
     rgb(62, 220, 232) 100%
   );
   border-radius: 10px;
+  display: block;
 }
 
 #search-form {
-  padding: 30px;
+  padding: 70px;
+}
+
+#weather-information {
+  padding-top: 10px;
+  font-size: larger;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #35495e;
 }
 
 .my-list {
   list-style: none;
 }
 
-small a {
-    text-decoration: none;
-    padding-left: 285px;
+div .col-4 {
+  text-align: right;
+  margin-left: 90px;
 }
 
 #current-description:first-letter {
   text-transform: capitalize;
+}
+
+a {
+  text-decoration: none;
+}
+
+#show-temperature {
+  font-size: 50px;
+  color: #430f58;
+}
+
+small a {
+  text-decoration: none;
+  padding-left: 285px;
 }
