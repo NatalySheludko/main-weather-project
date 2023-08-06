@@ -24,28 +24,45 @@ function formatCurrentDate() {
   return `${currentDay} ${currentHours}:${currentMinutes}`;
 }
 
+function formatDay(timestap) {
+  let date = new Date(timestap * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  //console.log(response.data.daily);
+  //console.log(response.data.daily)
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast-list");
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHTML = `<div class="row">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
+  forecast.forEach(function (forecastDay) {
+    //forecast.forEach(function (forecastDay, index) та перед img додати ${index} (див.і прибрати) (під days з'явиться цифра яка відповідає дню)
+    //if (index < 6) {
+    forecastHTML = // or forecastHTML += `code`
       forecastHTML +
       `
-    <div class="col-2">
-      <div class="weekdays-forecast">${day}</div>
-      <img
-        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+    <div class="col">
+      <div class="weekdays-forecast">${formatDay(forecastDay.time)}</div>
+     <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecastDay.condition.icon
+        }.png"
         width="60"
       />
       <div>
-        <span class="temperature-forecast-day">38°</span>
-        <span class="temperature-forecast-night">24°</span>
+        <span class="temperature-forecast-day">${Math.round(
+          forecastDay.temperature.maximum
+        )}°</span>
+        <span class="temperature-forecast-night">${Math.round(
+          forecastDay.temperature.minimum
+        )}°</span>
       </div>
     </div>
   `;
+    //}
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
