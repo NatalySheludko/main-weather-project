@@ -24,6 +24,43 @@ function formatCurrentDate() {
   return `${currentDay} ${currentHours}:${currentMinutes}`;
 }
 
+function displayForecast(response) {
+  //console.log(response.data.daily);
+  let forecastElement = document.querySelector("#weather-forecast-list");
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-2">
+      <div class="weekdays-forecast">${day}</div>
+      <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+        width="60"
+      />
+      <div>
+        <span class="temperature-forecast-day">38°</span>
+        <span class="temperature-forecast-night">24°</span>
+      </div>
+    </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  //console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  //console.log(coordinates);
+  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
+  unit = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${unit}`;
+  //console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showCurrentWeather(response) {
   let currentTemperature = document.querySelector("#show-temperature");
   let currentCity = document.querySelector("#current-city");
@@ -50,6 +87,8 @@ function showCurrentWeather(response) {
   currentDate.innerHTML = formatCurrentDate();
   iconElement.innerHTML =
     "<img src='" + weatherIconUrl + "' alt='Weather Icon'>";
+
+  getForecast(response.data.coordinates);
 }
 
 function search(currentCity) {
