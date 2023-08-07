@@ -33,15 +33,12 @@ function formatDay(timestap) {
 }
 
 function displayForecast(response) {
-  //console.log(response.data.daily)
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast-list");
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay) {
-    //forecast.forEach(function (forecastDay, index) та перед img додати ${index} (див.і прибрати) (під days з'явиться цифра яка відповідає дню)
-    //if (index < 6) {
-    forecastHTML = // or forecastHTML += `code`
+    forecastHTML =
       forecastHTML +
       `
     <div class="col">
@@ -62,19 +59,15 @@ function displayForecast(response) {
       </div>
     </div>
   `;
-    //}
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  //console.log(forecastHTML);
 }
 
 function getForecast(coordinates) {
-  //console.log(coordinates);
   let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
   unit = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${unit}`;
-  //console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -92,15 +85,15 @@ function showCurrentWeather(response) {
   let weatherIconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`;
   let iconElement = document.getElementById("current-icon");
 
-  celsiusTemperature = response.data.temperature.current; //without 'let' becouse global specific variables
-  celsiusTemperatureFeels = response.data.temperature.feels_like;
-  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  currentTemperature.innerHTML = Math.round(response.data.temperature.current);
   currentCity.innerHTML = response.data.city;
   currentDescription.innerHTML = response.data.condition.description;
   currentWind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
 
   currentHumidity.innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
-  currentFeelsTemperature.innerHTML = Math.round(celsiusTemperatureFeels);
+  currentFeelsTemperature.innerHTML = Math.round(
+    response.data.temperature.feels_like
+  );
   currentDate.innerHTML = formatCurrentDate();
   iconElement.innerHTML =
     "<img src='" + weatherIconUrl + "' alt='Weather Icon'>";
@@ -131,38 +124,5 @@ function findCurrentPosition(position) {
 }
 navigator.geolocation.getCurrentPosition(findCurrentPosition);
 
-function fahrenheitTemperatureScale(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = document.querySelector("#show-temperature");
-  let fahrenheitDegreeFormula = (celsiusTemperature * 9) / 5 + 32;
-  fahrenheitTemperature.innerHTML = Math.round(fahrenheitDegreeFormula);
-  let fahrenheitTemperatureFeels = document.querySelector(
-    "#show-feels-temperature"
-  );
-  let fahrenheitDegreeFormulaFeels = (celsiusTemperatureFeels * 9) / 5 + 32;
-  fahrenheitTemperatureFeels.innerHTML = Math.round(
-    fahrenheitDegreeFormulaFeels
-  );
-}
-
-function celsiusTemperatureScale(event) {
-  event.preventDefault();
-  let celsiusTemperatureDegree = document.querySelector("#show-temperature");
-  celsiusTemperatureDegree.innerHTML = Math.round(celsiusTemperature);
-  let celsiusDegreeTemperatureFeels = document.querySelector(
-    "#show-feels-temperature"
-  );
-  celsiusDegreeTemperatureFeels.innerHTML = Math.round(celsiusTemperatureFeels);
-}
-
-let celsiusTemperature = null;
-let celsiusTemperatureFeels = null;
-
 let searchCity = document.querySelector("#enter-city");
 searchCity.addEventListener("click", handleSubmit);
-
-let fahrenheitButton = document.querySelector("#link-fahrenheit"); //global specific variables create outside function
-fahrenheitButton.addEventListener("click", fahrenheitTemperatureScale);
-
-let celsiusButton = document.querySelector("#link-celsius");
-celsiusButton.addEventListener("click", celsiusTemperatureScale);
