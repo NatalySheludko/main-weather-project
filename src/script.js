@@ -91,9 +91,9 @@ function showCurrentWeather(response) {
   currentWind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
 
   currentHumidity.innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
-  currentFeelsTemperature.innerHTML = Math.round(
+  currentFeelsTemperature.innerHTML = `${Math.round(
     response.data.temperature.feels_like
-  );
+  )}°`;
   currentDate.innerHTML = formatCurrentDate();
   iconElement.innerHTML =
     "<img src='" + weatherIconUrl + "' alt='Weather Icon'>";
