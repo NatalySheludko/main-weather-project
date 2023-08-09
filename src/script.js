@@ -117,4 +117,4 @@ function handleSubmit(event) {
 let searchCity = document.querySelector("#enter-city");
 searchCity.addEventListener("click", handleSubmit);
 
-search("Zaporyzhzhia");
+search("Zaporizhzhia");
