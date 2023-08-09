@@ -114,15 +114,7 @@ function handleSubmit(event) {
   search(enterCityInput.value);
 }
 
-function findCurrentPosition(position) {
-  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
-  let unit = "metric";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${unit}`;
-  axios.get(apiUrl).then(showCurrentWeather);
-}
-navigator.geolocation.getCurrentPosition(findCurrentPosition);
-
 let searchCity = document.querySelector("#enter-city");
 searchCity.addEventListener("click", handleSubmit);
+
+search("Zaporyzhzhia");
