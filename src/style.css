@@ -59,7 +59,8 @@ a {
   opacity: 0.6;
 }
 
-small a {
+.footer {
+  display: flex;
+  justify-content: center;
   text-decoration: none;
-  padding-left: 285px;
 }
