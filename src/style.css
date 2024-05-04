@@ -1,14 +1,13 @@
 .container {
   width: 800px;
-  height: 500px;
-  margin-top: 30px;
+  margin-top: 130px;
+  display: block;
+  border-radius: 10px;
   background: linear-gradient(
     175deg,
     rgb(252, 235, 115) 0%,
     rgb(62, 220, 232) 100%
   );
-  border-radius: 10px;
-  display: block;
 }
 
 #search-form {
@@ -27,8 +26,8 @@
 }
 
 div .col-4 {
-  text-align: right;
   margin-left: 90px;
+  text-align: right;
 }
 
 #current-description:first-letter {
@@ -45,10 +44,10 @@ a {
 }
 
 #weather-forecast-list {
+  padding: 30px 0px;
   text-align: center;
-  color: #283739;
   font-weight: 600;
-  padding-top: 30px;
+  color: #283739;
 }
 
 .weekdays-forecast {
