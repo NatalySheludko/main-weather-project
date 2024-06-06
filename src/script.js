@@ -1,6 +1,6 @@
 function formatCurrentDate() {
-  let currentDate = new Date();
-  let days = [
+  const currentDate = new Date();
+  const days = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -9,32 +9,32 @@ function formatCurrentDate() {
     "Friday",
     "Saturday",
   ];
-  let currentDay = days[currentDate.getDay()];
-  let currentHours = currentDate.getHours();
+  const currentDay = days[currentDate.getDay()];
+  const currentHours = currentDate.getHours();
   if (currentHours < 10) {
     currentHours = `0${currentHours}`;
   }
-  let currentMinutes = currentDate.getMinutes();
+  const currentMinutes = currentDate.getMinutes();
   if (currentMinutes < 10) {
     currentMinutes = `0${currentMinutes}`;
   }
-  let showFormatDate = document.querySelector(
+  const showFormatDate = document.querySelector(
     "#show-current-day-hours-minutes"
   );
   return `${currentDay} ${currentHours}:${currentMinutes}`;
 }
 
 function formatDay(timestap) {
-  let date = new Date(timestap * 1000);
-  let day = date.getDay();
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const date = new Date(timestap * 1000);
+  const day = date.getDay();
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return days[day];
 }
 
 function displayForecast(response) {
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#weather-forecast-list");
+  const forecast = response.data.daily;
+  const forecastElement = document.querySelector("#weather-forecast-list");
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay) {
@@ -65,25 +65,25 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
-  unit = "metric";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${unit}`;
+  const apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
+  const unit = "metric";
+  const apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function showCurrentWeather(response) {
-  let currentTemperature = document.querySelector("#show-temperature");
-  let currentCity = document.querySelector("#current-city");
-  let currentDescription = document.querySelector("#current-description");
-  let currentWind = document.querySelector("#current-wind");
+  const currentTemperature = document.querySelector("#show-temperature");
+  const currentCity = document.querySelector("#current-city");
+  const currentDescription = document.querySelector("#current-description");
+  const currentWind = document.querySelector("#current-wind");
 
-  let currentHumidity = document.querySelector("#current-humidity");
-  let currentFeelsTemperature = document.querySelector(
+  const currentHumidity = document.querySelector("#current-humidity");
+  const currentFeelsTemperature = document.querySelector(
     "#show-feels-temperature"
   );
-  let currentDate = document.querySelector("#current-date");
-  let weatherIconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`;
-  let iconElement = document.getElementById("current-icon");
+  const currentDate = document.querySelector("#current-date");
+  const weatherIconUrl = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`;
+  const iconElement = document.getElementById("current-icon");
 
   celsiusTemperature = response.data.temperature.current;
   celsiusTemperatureFeels = response.data.temperature.feels_like;
@@ -101,25 +101,30 @@ function showCurrentWeather(response) {
   getForecast(response.data.coordinates);
 }
 
+let celsiusTemperature = null;
+let celsiusTemperatureFeels = null;
+
+const DEFAULT_CITY = "Kyiv";
+
 function search(currentCity) {
-  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
-  let unit = "metric";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=${unit}`;
+  const apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
+  const unit = "metric";
+  const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showCurrentWeather);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  let enterCityInput = document.querySelector("#search-city");
+  const enterCityInput = document.querySelector("#search-city");
   search(enterCityInput.value);
 }
 
 /*function findCurrentPosition(position) {
-  let apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
-  let unit = "metric";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${unit}`;
+  const apiKey = "6fa3cb02fc6ct4bd31ab65905b1ado1a";
+  const unit = "metric";
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+  const apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showCurrentWeather);
 }
 navigator.geolocation.getCurrentPosition(findCurrentPosition);
@@ -127,13 +132,13 @@ navigator.geolocation.getCurrentPosition(findCurrentPosition);
 
 function fahrenheitTemperatureScale(event) {
   event.preventDefault();
-  let fahrenheitTemperature = document.querySelector("#show-temperature");
-  let fahrenheitDegreeFormula = (celsiusTemperature * 9) / 5 + 32;
+  const fahrenheitTemperature = document.querySelector("#show-temperature");
+  const fahrenheitDegreeFormula = (celsiusTemperature * 9) / 5 + 32;
   fahrenheitTemperature.innerHTML = Math.round(fahrenheitDegreeFormula);
-  let fahrenheitTemperatureFeels = document.querySelector(
+  const fahrenheitTemperatureFeels = document.querySelector(
     "#show-feels-temperature"
   );
-  let fahrenheitDegreeFormulaFeels = (celsiusTemperatureFeels * 9) / 5 + 32;
+  const fahrenheitDegreeFormulaFeels = (celsiusTemperatureFeels * 9) / 5 + 32;
   fahrenheitTemperatureFeels.innerHTML = Math.round(
     fahrenheitDegreeFormulaFeels
   );
@@ -141,24 +146,21 @@ function fahrenheitTemperatureScale(event) {
 
 function celsiusTemperatureScale(event) {
   event.preventDefault();
-  let celsiusTemperatureDegree = document.querySelector("#show-temperature");
+  const celsiusTemperatureDegree = document.querySelector("#show-temperature");
   celsiusTemperatureDegree.innerHTML = Math.round(celsiusTemperature);
-  let celsiusDegreeTemperatureFeels = document.querySelector(
+  const celsiusDegreeTemperatureFeels = document.querySelector(
     "#show-feels-temperature"
   );
   celsiusDegreeTemperatureFeels.innerHTML = Math.round(celsiusTemperatureFeels);
 }
 
-let celsiusTemperature = null;
-let celsiusTemperatureFeels = null;
-
-let searchCity = document.querySelector("#enter-city");
+const searchCity = document.querySelector("#enter-city");
 searchCity.addEventListener("click", handleSubmit);
 
-let fahrenheitButton = document.querySelector("#link-fahrenheit");
+const fahrenheitButton = document.querySelector("#link-fahrenheit");
 fahrenheitButton.addEventListener("click", fahrenheitTemperatureScale);
 
-let celsiusButton = document.querySelector("#link-celsius");
+const celsiusButton = document.querySelector("#link-celsius");
 celsiusButton.addEventListener("click", celsiusTemperatureScale);
 
-search("Zaporizhzhia");
+search(DEFAULT_CITY);
