@@ -17,6 +17,7 @@ and interactive elements to create a dynamic user interface.
 based on the latest data from weather APIs.
 - Location-Based Searches: Users can search for weather information by entering the name of a city or using their current location.
 - User-Friendly Interface: Designed with ease of use in mind, making it simple for users.
+- Adaptive design for desktop (1440px).
 
 ## Skills Utilized:
 - HTML & CSS & Bootstrap: Used for structuring and styling the web application and aesthetically pleasing design.
